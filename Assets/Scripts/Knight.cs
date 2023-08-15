@@ -23,58 +23,51 @@ public class Knight : MonoBehaviour
         // Debug.Log(movement);
         rb.velocity = movement.normalized * speed;
         isMoving = movement != Vector2.zero;
+        Debug.Log(rb.velocity);
+        //Debug.Log(movement.y);
 
-        if(isMoving)
+        if(movement.x == 0 && movement.y == 1)
         {
-        //đi về sau
-            if(movement.x == 0 && movement.y == 1 || movement.x != 0 && movement.x == -0.71 && movement.y == 0.71 || movement.x != 0 && movement.x == 0.71 && movement.y == 0.71)
+            if(isMoving)
             {
                 animator.Play("kinght-walk-after");
             }
+            else{
+                animator.Play("kinght-Idle-after");
+            }
         }
-        else if(movement.x == 0 && movement.y == 1 || movement.x != 0 && movement.x == -0.71 && movement.y == 0.71 || movement.x != 0 && movement.x == 0.71 && movement.y == 0.71)
+        
+        if(movement.x == 0 && movement.y == -1) 
         {
-            animator.Play("kinght-Idle-after");
-        }
-
-        if(isMoving)
-        {
-        //đi về trước
-            if(movement.x == 0 && movement.y == -1 || movement.x != 0 && movement.x == -0.71 && movement.y == 0.71 || movement.x != 0 && movement.x == -0.71 && movement.y == -0.71) 
+            if(isMoving)
             {
                 animator.Play("kinght-walk-before");
             }
+            else{
+                animator.Play("kinght-Idle-before");
+            }
         }
-        else if(movement.x == 0 && movement.y == -1 || movement.x != 0 && movement.x == -0.71 && movement.y == 0.71 || movement.x != 0 && movement.x == -0.71 && movement.y == -0.71) 
+        
+        if(movement.x == 1 && movement.y == 0)
         {
-            animator.Play("kinght-Idle-before");
-        } 
-
-        if(isMoving)
-        {
-         //đi về phải
-            if(movement.x == 1 && movement.y == 0 || movement.x != 0 && movement.x == 0.71 && movement.y == 0.71 || movement.x != 0 && movement.x == 0.71 && movement.y == -0.71)
+            if(isMoving)
             {
                 animator.Play("kinght-walk-right");
             }
+            else{
+                animator.Play("kinght-Idle-right");
+            }
         }
-        else if(movement.x == 1 && movement.y == 0 || movement.x != 0 && movement.x == 0.71 && movement.y == 0.71 || movement.x != 0 && movement.x == 0.71 && movement.y == -0.71)
+        
+        if(movement.x == -1 && movement.y == 0)
         {
-            animator.Play("kinght-Idle-right");
-        }
-
-        if(isMoving)
-        {
-         //đi về trái
-            if(movement.x == -1 && movement.y == 0 || movement.x != 0 && movement.x == -0.71 && movement.y == 0.71 || movement.x != 0 && movement.x == -0.71 && movement.y == -0.71)
+            if(isMoving)
             {
                 animator.Play("kinght-walk-left");
             }
+            else{
+            animator.Play("kinght-Idle-left"); 
+            }
         }
-        else if(movement.x == -1 && movement.y == 0 || movement.x != 0 && movement.x == -0.71 && movement.y == 0.71 || movement.x != 0 && movement.x == -0.71 && movement.y == -0.71)
-        {
-            animator.Play("kinght-Idle-left");
-        }
-
     }
 }
