@@ -8,65 +8,59 @@ public class Knight : MonoBehaviour
     public float speed, rotateSpeed;
     public Rigidbody2D rb;
     public Animator animator;
+
     bool isMoving;
+
     void Update()
     {
         Move();
     }
-
 
     private void Move()
     {
         float moveHorizontal = Input.GetAxisRaw("Horizontal");
         float moveVertical = Input.GetAxisRaw("Vertical");
         var movement = new Vector2(moveHorizontal, moveVertical).normalized;
-        // Debug.Log(movement);
+        //Debug.Log(movement);
         rb.velocity = movement.normalized * speed;
         isMoving = movement != Vector2.zero;
-        Debug.Log(rb.velocity);
-        //Debug.Log(movement.y);
 
-        if(movement.x == 0 && movement.y == 1)
+        if (isMoving)
         {
-            if(isMoving)
+            if (movement == Vector2.up)
             {
                 animator.Play("kinght-walk-after");
             }
-            else{
-                animator.Play("kinght-Idle-after");
-            }
-        }
-        
-        if(movement.x == 0 && movement.y == -1) 
-        {
-            if(isMoving)
+            else if (movement == Vector2.down)
             {
                 animator.Play("kinght-walk-before");
             }
-            else{
-                animator.Play("kinght-Idle-before");
-            }
-        }
-        
-        if(movement.x == 1 && movement.y == 0)
-        {
-            if(isMoving)
+            else if (movement == Vector2.right)
             {
                 animator.Play("kinght-walk-right");
             }
-            else{
-                animator.Play("kinght-Idle-right");
-            }
-        }
-        
-        if(movement.x == -1 && movement.y == 0)
-        {
-            if(isMoving)
+            else if (movement == Vector2.left)
             {
                 animator.Play("kinght-walk-left");
             }
-            else{
-            animator.Play("kinght-Idle-left"); 
+        }
+        else
+        {
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("kinght-walk-after"))
+            {
+                animator.Play("kinght-Idle-after");
+            }
+            else if (animator.GetCurrentAnimatorStateInfo(0).IsName("kinght-walk-before"))
+            {
+                animator.Play("kinght-Idle-before");
+            }
+            else if (animator.GetCurrentAnimatorStateInfo(0).IsName("kinght-walk-right"))
+            {
+                animator.Play("kinght-Idle-right");
+            }
+            else if (animator.GetCurrentAnimatorStateInfo(0).IsName("kinght-walk-left"))
+            {
+                animator.Play("kinght-Idle-left");
             }
         }
     }

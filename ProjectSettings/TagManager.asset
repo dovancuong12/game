@@ -3,12 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - zone
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - 
@@ -38,6 +39,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: tilemap
+    uniqueID: 276557855
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: House
+    uniqueID: 2906581029
+    locked: 0
+  - name: player
+    uniqueID: 1244614713
     locked: 0
