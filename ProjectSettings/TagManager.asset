@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - zone
+  - Scene4
+  - Monk
+  - Box
+  - nexten
+  - nextduoi
+  - Scene2
   layers:
   - Default
   - TransparentFX
@@ -50,4 +56,7 @@ TagManager:
     locked: 0
   - name: player
     uniqueID: 1244614713
+    locked: 0
+  - name: "c\xE2y"
+    uniqueID: 4054977595
     locked: 0

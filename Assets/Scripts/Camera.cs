@@ -21,6 +21,9 @@ public class Camera : MonoBehaviour
 
     private void LateUpdate()
     {
-        transform.position = Vector2.MoveTowards(transform.position , player.transform.position , moveSpeed * Time.deltaTime);
+        var target = player.transform.position;
+        var pos = transform.position;
+        target.z =pos.z;
+        transform.position = Vector3.MoveTowards(pos , target , moveSpeed * Time.deltaTime);
     }
 }
