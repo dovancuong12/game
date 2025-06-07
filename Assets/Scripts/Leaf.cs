@@ -1,4 +1,26 @@
 <div class="pagination">
+    <a class="page-btn {% if not page_obj.has_previous %}disabled{% endif %}" 
+       {% if page_obj.has_previous %}href="?page={{ page_obj.previous_page_number }}&q={{ query }}"{% endif %}>
+       ←
+    </a>
+
+    <span class="page-info">Trang {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
+
+    <a class="page-btn {% if not page_obj.has_next %}disabled{% endif %}" 
+       {% if page_obj.has_next %}href="?page={{ page_obj.next_page_number }}&q={{ query }}"{% endif %}>
+       →
+    </a>
+</div>
+
+.page-btn.disabled {
+    pointer-events: none;
+    background-color: #ccc;
+    box-shadow: none;
+    color: #666;
+    cursor: default;
+}
+
+<div class="pagination">
     {% if page_obj.has_previous %}
         <a class="page-btn" href="?page={{ page_obj.previous_page_number }}&q={{ query }}">←</a>
     {% else %}
