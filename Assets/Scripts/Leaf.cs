@@ -211,3 +211,25 @@ tr:hover {
 </div>
 </body>
 </html>
+
+
+
+
+
+
+.link a.button-link {
+    display: inline-block;
+    padding: 10px 18px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 6px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.link a.button-link:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    text-decoration: none;
+}
