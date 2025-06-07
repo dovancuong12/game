@@ -1,3 +1,37 @@
+.pagination {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.page-btn {
+    padding: 6px 14px;
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+    text-decoration: none;
+    box-shadow: 0 2px 6px rgba(0, 123, 255, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+.page-btn:hover {
+    background-color: #0056b3;
+}
+
+.page-disabled {
+    color: #ccc;
+    font-weight: bold;
+}
+
+.page-info {
+    font-weight: 500;
+    color: #2c3e50;
+}
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
