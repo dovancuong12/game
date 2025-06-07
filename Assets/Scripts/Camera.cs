@@ -24,71 +24,8 @@ public class Camera : MonoBehaviour
         var target = player.transform.position;
         var pos = transform.position;
         target.z =pos.z;
-        transform.position = Vector3.MoveTowards(pos , target , moveSpeed * Time.deltaTime);
-    }
-}
-from django.db import models
+        transform.position = Vector3.MoveTowards(pos , target , moveSpeed * Time.
 
-class Book(models.Model):
-    title = models.CharField(max_length=200)
-    author = models.CharField(max_length=200)
-    published_year = models.IntegerField()
-    genre = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.title
-
-python manage.py makemigrations
-python manage.py migrate
-
-
-[
-  {
-    "model": "msv2025123456.book",
-    "pk": 1,
-    "fields": {
-      "title": "2025123456",
-      "author": "NguyenVanA",
-      "published_year": 2025,
-      "genre": "PythonWeb"
-    }
-  }
-]
-
-
-from django import forms
-from .models import Book
-
-class BookForm(forms.ModelForm):
-    class Meta:
-        model = Book
-        fields = '__all__'
-
-
-from django.shortcuts import render, redirect
-from .models import Book
-from .forms import BookForm
-from django.core.paginator import Paginator
-
-def add_book(request):
-    if request.method == 'POST':
-        form = BookForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('book_list')
-    else:
-        form = BookForm()
-    return render(request, 'add_book.html', {'form': form})
-
-def book_list(request):
-    query = request.GET.get('q', '')
-    books = Book.objects.all()
-    if query:
-        books = books.filter(title__icontains=query) | books.filter(author__icontains=query)
-    
-    paginator = Paginator(books, 3)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
 
     return render(request, 'book_list.html', {'page_obj': page_obj, 'query': query})
 
@@ -150,8 +87,32 @@ from msv2025123456 import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.book_list, name='book_list'),
-    path('add/', views.add_book, name='add_book'),
-]
+    path('add/', views.add_book, name='add_
 
+from django.shortcuts import render, redirect
+from .models import Student
+from .forms import StudentForm
+from django.core.paginator import Paginator
 
+def student_list(request):
+    query = request.GET.get('q', '')
+    students = Student.objects.all()
+    if query:
+        students = students.filter(name__icontains=query) | students.filter(student_id__icontains=query)
+
+    paginator = Paginator(students, 4)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'student_list.html', {'page_obj': page_obj, 'query': query})
+
+def add_student(request):
+    if request.method == 'POST':
+        form = StudentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('student_list')
+    else:
+        form = StudentForm()
+    return render(request, 'add_student.html', {'form': form})
 
