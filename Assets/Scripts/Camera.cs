@@ -31,39 +31,6 @@ public class Camera : MonoBehaviour
 
 
 
-<h2>Thêm sách</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Lưu</button>
-</form>
-<a href="/">Về danh sách</a>
-
-
-<h2>Danh sách sách</h2>
-<form method="get">
-  <input type="text" name="q" placeholder="Tìm theo tiêu đề hoặc tác giả" value="{{ query }}">
-  <button type="submit">Tìm</button>
-</form>
-
-<table border="1">
-  <tr>
-    <th>Tiêu đề</th>
-    <th>Tác giả</th>
-    <th>Năm XB</th>
-    <th>Thể loại</th>
-  </tr>
-  {% for book in page_obj %}
-    <tr>
-      <td>{{ book.title }}</td>
-      <td>{{ book.author }}</td>
-      <td>{{ book.published_year }}</td>
-      <td>{{ book.genre }}</td>
-    </tr>
-  {% empty %}
-    <tr><td colspan="4">Không có sách</td></tr>
-  {% endfor %}
-</table>
 
 <div>
   {% if page_obj.has_previous %}
@@ -115,4 +82,46 @@ def add_student(request):
     else:
         form = StudentForm()
     return render(request, 'add_student.html', {'form': form})
+<h2>Danh sách sinh viên</h2>
 
+<form method="get">
+  <input type="text" name="q" placeholder="Tìm theo tên hoặc MSSV" value="{{ query }}">
+  <button type="submit">Tìm</button>
+</form>
+
+<table border="1">
+  <tr>
+    <th>Tên</th>
+    <th>MSSV</th>
+    <th>Năm sinh</th>
+    <th>Ngành</th>
+  </tr>
+  {% for student in page_obj %}
+    <tr>
+      <td>{{ student.name }}</td>
+      <td>{{ student.student_id }}</td>
+      <td>{{ student.birth_year }}</td>
+      <td>{{ student.major }}</td>
+    </tr>
+  {% endfor %}
+</table>
+
+<div>
+  {% if page_obj.has_previous %}
+    <a href="?page={{ page_obj.previous_page_number }}&q={{ query }}">Trang trước</a>
+  {% endif %}
+  Trang {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+  {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}&q={{ query }}">Trang sau</a>
+  {% endif %}
+</div>
+
+<a href="/add/">➕ Thêm sinh viên</a>
+
+<h2>Thêm sinh viên</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Lưu</button>
+</form>
+<a href="/">← Quay lại danh sách</a>
