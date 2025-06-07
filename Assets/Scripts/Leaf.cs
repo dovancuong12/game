@@ -1,3 +1,19 @@
+<div class="pagination">
+    {% if page_obj.has_previous %}
+        <a class="page-btn" href="?page={{ page_obj.previous_page_number }}&q={{ query }}">←</a>
+    {% else %}
+        <span class="page-disabled">←</span>
+    {% endif %}
+
+    <span class="page-info">Trang {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
+
+    {% if page_obj.has_next %}
+        <a class="page-btn" href="?page={{ page_obj.next_page_number }}&q={{ query }}">→</a>
+    {% else %}
+        <span class="page-disabled">→</span>
+    {% endif %}
+</div>
+
 .pagination {
     text-align: center;
     margin-top: 30px;
